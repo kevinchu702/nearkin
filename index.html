@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>親念 NearKin｜創業提案報告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --warm: #8B5E3C;
+    --gold: #C9A84C;
+    --blush: #E8D5C4;
+    --cream: #FAF6F0;
+    --sage: #7A9E7E;
+    --mist: #B8C9C8;
+    --deep: #2C3E50;
+    --light-warm: #F5EDE3;
+    --border: #D4C4B0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,246,240,0.93);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand { font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 1rem; color: var(--warm); letter-spacing: 0.05em; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { font-size: 0.75rem; color: #888; text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--warm); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 56px; overflow: hidden;
+  }
+  .hero-left {
+    background: var(--deep);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem; position: relative;
+  }
+  .hero-left::after {
+    content: ''; position: absolute; right: -50px; top: 0; bottom: 0; width: 100px;
+    background: var(--deep);
+    clip-path: polygon(0 0, 0 100%, 50% 100%, 100% 50%, 50% 0);
+    z-index: 2;
+  }
+  .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.5rem; }
+  .hero-title { font-family: 'Noto Serif TC', serif; font-size: clamp(2.8rem, 4.5vw, 4.2rem); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 0.4rem; }
+  .hero-title-en { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.6rem, 2.5vw, 2.4rem); color: var(--gold); margin-bottom: 2rem; }
+  .hero-tagline { font-size: 0.95rem; color: rgba(255,255,255,0.68); line-height: 1.9; max-width: 380px; border-left: 2px solid var(--gold); padding-left: 1.2rem; }
+  .hero-badges { display: flex; gap: 0.7rem; margin-top: 2.5rem; flex-wrap: wrap; }
+  .badge { padding: 0.3rem 0.9rem; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); font-size: 0.68rem; letter-spacing: 0.1em; border-radius: 2px; }
+  .hero-right { background: var(--light-warm); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 5rem 4rem 5rem 6rem; }
+  .hero-visual { width: 300px; height: 300px; position: relative; }
+  .circle-outer { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--border); animation: rotateOuter 20s linear infinite; }
+  .circle-outer::before { content: ''; position: absolute; top: -4px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .circle-mid { position: absolute; inset: 28px; border-radius: 50%; border: 1px dashed var(--mist); animation: rotateMid 14s linear infinite reverse; }
+  .circle-inner { position: absolute; inset: 66px; border-radius: 50%; background: linear-gradient(135deg, var(--warm) 0%, #6B3F2A 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(139,94,60,0.35); }
+  .circle-icon { font-size: 2.8rem; margin-bottom: 0.2rem; }
+  .circle-text { font-family: 'Noto Serif TC', serif; font-size: 0.85rem; color: rgba(255,255,255,0.9); letter-spacing: 0.1em; }
+  @keyframes rotateOuter { to { transform: rotate(360deg); } }
+  @keyframes rotateMid { to { transform: rotate(360deg); } }
+  .orbit-dot { position: absolute; width: 34px; height: 34px; border-radius: 50%; background: #fff; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .orbit-dot:nth-child(1) { top: -17px; left: 50%; transform: translateX(-50%); }
+  .orbit-dot:nth-child(2) { bottom: -17px; left: 50%; transform: translateX(-50%); }
+  .orbit-dot:nth-child(3) { left: -17px; top: 50%; transform: translateY(-50%); }
+  .orbit-dot:nth-child(4) { right: -17px; top: 50%; transform: translateY(-50%); }
+
+  /* LAYOUT */
+  section { padding: 5.5rem 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+  .section-label { font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+  .section-label::after { content: ''; flex: 1; max-width: 50px; height: 1px; background: var(--gold); opacity: 0.5; }
+  .section-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; line-height: 1.3; margin-bottom: 1.2rem; }
+  .section-desc { font-size: 0.95rem; color: #666; line-height: 1.9; max-width: 650px; }
+  .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 2.5rem; }
+
+  /* PRODUCT */
+  .product-section { background: #fff; }
+  .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .product-intro-text h3 { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; margin-bottom: 1rem; color: var(--warm); }
+  .product-intro-text p { font-size: 0.9rem; color: #555; line-height: 1.9; margin-bottom: 0.9rem; }
+  .value-props { display: flex; flex-direction: column; gap: 1rem; }
+  .value-card { background: var(--light-warm); border-left: 3px solid var(--gold); padding: 1.1rem 1.4rem; border-radius: 0 6px 6px 0; }
+  .value-card h4 { font-size: 0.83rem; font-weight: 700; color: var(--warm); margin-bottom: 0.3rem; }
+  .value-card p { font-size: 0.83rem; color: #666; }
+
+  /* FEATURES */
+  .features-section { background: var(--cream); }
+  .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .feature-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; position: relative; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(139,94,60,0.12); }
+  .feature-card::before { content: attr(data-num); position: absolute; top: 1rem; right: 1.3rem; font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--blush); line-height: 1; pointer-events: none; }
+  .feature-icon { font-size: 1.9rem; margin-bottom: 0.9rem; }
+  .feature-card h3 { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; font-weight: 700; color: var(--deep); margin-bottom: 0.7rem; }
+  .feature-card p { font-size: 0.85rem; color: #666; line-height: 1.8; }
+  .feature-sub { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .feature-sub li { font-size: 0.8rem; color: #888; list-style: none; padding: 0.2rem 0 0.2rem 1rem; position: relative; }
+  .feature-sub li::before { content: '›'; position: absolute; left: 0; color: var(--gold); }
+
+  /* PERSONA */
+  .persona-section { background: var(--deep); color: #fff; }
+  .persona-section .section-title { color: #fff; }
+  .persona-section .section-desc { color: rgba(255,255,255,0.6); }
+  .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; margin-top: 3rem; }
+  .persona-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.8rem; }
+  .persona-avatar { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1.1rem; }
+  .persona-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--gold); }
+  .persona-card .subtitle { font-size: 0.75rem; color: rgba(255,255,255,0.38); margin-bottom: 0.9rem; }
+  .persona-card p { font-size: 0.83rem; color: rgba(255,255,255,0.68); line-height: 1.8; }
+  .persona-tag { display: inline-block; margin-top: 0.9rem; padding: 0.28rem 0.75rem; border-radius: 2px; font-size: 0.7rem; letter-spacing: 0.05em; }
+
+  /* MARKET */
+  .market-section { background: #fff; }
+  .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .market-card { text-align: center; padding: 2.5rem 1.5rem; border: 1px solid var(--border); border-radius: 12px; position: relative; overflow: hidden; }
+  .market-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; }
+  .market-card.tam::after { background: var(--sage); }
+  .market-card.sam::after { background: var(--gold); }
+  .market-card.som::after { background: var(--warm); }
+  .market-label { font-size: 0.68rem; letter-spacing: 0.18em; color: #999; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .market-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; line-height: 1; margin-bottom: 0.3rem; }
+  .market-card.tam .market-num { color: var(--sage); }
+  .market-card.sam .market-num { color: var(--gold); }
+  .market-card.som .market-num { color: var(--warm); }
+  .market-unit { font-size: 0.82rem; color: #888; margin-bottom: 0.9rem; }
+  .market-desc { font-size: 0.8rem; color: #666; line-height: 1.7; }
+
+  /* COMPETITION */
+  .competition-section { background: var(--cream); }
+  .comp-table { width: 100%; border-collapse: collapse; margin-top: 2.5rem; font-size: 0.86rem; }
+  .comp-table th { background: var(--deep); color: #fff; padding: 0.85rem 1rem; text-align: left; font-weight: 500; font-size: 0.78rem; letter-spacing: 0.05em; }
+  .comp-table td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .comp-table tr:hover td { background: var(--light-warm); }
+  .comp-table tr.highlight td { background: rgba(201,168,76,0.07); }
+  .comp-table tr.highlight td:first-child { border-left: 3px solid var(--gold); font-weight: 700; color: var(--warm); }
+  .dot-rating { display: flex; gap: 3px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.fill { background: var(--gold); }
+  .dot.empty { background: var(--border); }
+  .moat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  .moat-card { text-align: center; padding: 1.4rem 0.8rem; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+  .moat-icon { font-size: 1.7rem; margin-bottom: 0.7rem; }
+  .moat-card h4 { font-size: 0.78rem; font-weight: 700; color: var(--deep); line-height: 1.4; }
+
+  /* TECH */
+  .tech-section { background: var(--deep); color: #fff; }
+  .tech-section .section-title { color: #fff; }
+  .tech-section .section-desc { color: rgba(255,255,255,0.6); }
+  .tech-stack { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.8rem; margin-top: 3rem; }
+  .tech-module { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.7rem; }
+  .tech-module h3 { font-size: 0.95rem; font-weight: 700; color: var(--gold); margin-bottom: 0.9rem; }
+  .tech-module p { font-size: 0.83rem; color: rgba(255,255,255,0.68); line-height: 1.8; }
+  .tech-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .chip { padding: 0.22rem 0.65rem; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); font-size: 0.7rem; border-radius: 2px; }
+
+  /* MEMORY */
+  .memory-section { background: #fff; }
+  .memory-layers { display: flex; flex-direction: column; margin-top: 3rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .memory-layer { display: grid; grid-template-columns: 180px 1fr; border-bottom: 1px solid var(--border); }
+  .memory-layer:last-child { border-bottom: none; }
+  .memory-layer-label { padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .memory-layer:nth-child(1) .memory-layer-label { background: var(--deep); }
+  .memory-layer:nth-child(2) .memory-layer-label { background: var(--warm); }
+  .memory-layer:nth-child(3) .memory-layer-label { background: var(--sage); }
+  .memory-layer-label .layer-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: rgba(255,255,255,0.28); line-height: 1; }
+  .memory-layer-label h4 { font-size: 0.78rem; color: #fff; font-weight: 700; margin-top: 0.3rem; letter-spacing: 0.05em; }
+  .memory-layer-content { padding: 1.7rem 2rem; background: var(--light-warm); }
+  .memory-layer-content h5 { font-size: 0.88rem; font-weight: 700; color: var(--deep); margin-bottom: 0.5rem; }
+  .memory-layer-content p { font-size: 0.83rem; color: #666; line-height: 1.8; }
+  .memory-example { margin-top: 0.8rem; padding: 0.65rem 1rem; background: #fff; border-left: 2px solid var(--gold); font-size: 0.78rem; color: #888; font-style: italic; border-radius: 0 4px 4px 0; }
+
+  /* PRICING */
+  .pricing-section { background: var(--cream); }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; max-width: 780px; margin-left: auto; margin-right: auto; }
+  .pricing-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 2.3rem 2rem; position: relative; text-align: center; }
+  .pricing-card.featured { background: var(--deep); border-color: var(--deep); transform: scale(1.03); box-shadow: 0 20px 60px rgba(44,62,80,0.25); }
+  .pricing-badge { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #fff; font-size: 0.68rem; padding: 0.28rem 0.9rem; border-radius: 2px; letter-spacing: 0.08em; white-space: nowrap; }
+  .pricing-name { font-family: 'Noto Serif TC', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .pricing-card.featured .pricing-name { color: var(--gold); }
+  .pricing-en { font-size: 0.75rem; color: #999; margin-bottom: 1.4rem; }
+  .pricing-card.featured .pricing-en { color: rgba(255,255,255,0.38); }
+  .pricing-price { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; line-height: 1; color: var(--warm); margin-bottom: 0.2rem; }
+  .pricing-card.featured .pricing-price { color: var(--gold); }
+  .pricing-period { font-size: 0.78rem; color: #999; margin-bottom: 1.8rem; }
+  .pricing-card.featured .pricing-period { color: rgba(255,255,255,0.38); }
+  .pricing-features { list-style: none; text-align: left; }
+  .pricing-features li { font-size: 0.83rem; padding: 0.48rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 0.55rem; color: #555; }
+  .pricing-card.featured .pricing-features li { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.73); }
+  .pricing-features li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
+  .pricing-card.featured .pricing-features li::before { color: var(--gold); }
+  .pricing-features li:last-child { border-bottom: none; }
+  .unit-econ { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .econ-stat { text-align: center; padding: 2rem 1rem; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+  .econ-num { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--warm); line-height: 1; margin-bottom: 0.3rem; }
+  .econ-label { font-size: 0.75rem; color: #999; letter-spacing: 0.03em; line-height: 1.5; }
+
+  /* MARKETING */
+  .marketing-section { background: #fff; }
+  .gtm-phases { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 3rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .gtm-phase { padding: 2rem; border-right: 1px solid var(--border); }
+  .gtm-phase:last-child { border-right: none; }
+  .phase-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--blush); line-height: 1; margin-bottom: 0.7rem; }
+  .phase-period { font-size: 0.68rem; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .gtm-phase h3 { font-size: 0.95rem; font-weight: 700; color: var(--deep); margin-bottom: 0.8rem; }
+  .gtm-phase p { font-size: 0.82rem; color: #666; line-height: 1.8; }
+  .gtm-target { margin-top: 1.1rem; font-size: 0.78rem; display: flex; align-items: center; gap: 0.5rem; }
+  .gtm-target span:first-child { color: #aaa; }
+  .gtm-target span:last-child { color: var(--warm); font-weight: 700; }
+
+  /* FINANCE */
+  .finance-section { background: var(--cream); }
+  .finance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .finance-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.9rem; }
+  .finance-card h3 { font-family: 'Noto Serif TC', serif; font-size: 0.95rem; font-weight: 700; color: var(--warm); margin-bottom: 1.3rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--border); }
+  .finance-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 0.65rem 0; border-bottom: 1px dashed var(--border); font-size: 0.83rem; gap: 1rem; }
+  .finance-row:last-child { border-bottom: none; }
+  .finance-row .label { color: #666; }
+  .finance-row .val { font-weight: 700; color: var(--deep); white-space: nowrap; }
+  .finance-row .val.positive { color: var(--sage); }
+  .finance-row .val.negative { color: #E07070; }
+  .pnl-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 2.5rem; }
+  .pnl-table th { background: var(--deep); color: #fff; padding: 0.78rem 1rem; text-align: right; font-weight: 500; font-size: 0.78rem; }
+  .pnl-table th:first-child { text-align: left; }
+  .pnl-table td { padding: 0.78rem 1rem; border-bottom: 1px solid var(--border); text-align: right; }
+  .pnl-table td:first-child { text-align: left; color: #555; }
+  .pnl-table tr.subtotal td { background: var(--light-warm); font-weight: 700; }
+  .pnl-table tr.total td { background: var(--deep); color: #fff; font-weight: 700; }
+  .pnl-table tr.total td.negative { color: #f59a9a; }
+  .pnl-table tr.total td.positive { color: #9fdfb0; }
+
+  /* ETHICS */
+  .ethics-section { background: var(--deep); color: #fff; }
+  .ethics-section .section-title { color: #fff; }
+  .ethics-intro { font-size: 0.93rem; color: rgba(255,255,255,0.7); line-height: 1.9; max-width: 700px; margin-top: 1.5rem; margin-bottom: 3rem; padding: 1.4rem 1.9rem; background: rgba(255,255,255,0.05); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; }
+  .intervention-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+  .step-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.7rem; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 2.3rem; color: rgba(201,168,76,0.25); line-height: 1; margin-bottom: 0.5rem; }
+  .step-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--gold); margin-bottom: 0.7rem; }
+  .step-card p { font-size: 0.82rem; color: rgba(255,255,255,0.63); line-height: 1.8; }
+  .ethics-principle { margin-top: 3rem; padding: 2rem 2.5rem; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; text-align: center; }
+  .ethics-principle p { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; color: rgba(255,255,255,0.88); line-height: 1.9; font-style: italic; }
+
+  /* RISK */
+  .risk-section { background: #fff; }
+  .risk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .risk-card { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .risk-header { padding: 0.95rem 1.4rem; display: flex; align-items: center; gap: 0.75rem; }
+  .risk-header h4 { font-size: 0.88rem; font-weight: 700; color: #fff; }
+  .risk-tech .risk-header { background: var(--deep); }
+  .risk-biz .risk-header { background: var(--warm); }
+  .risk-legal .risk-header { background: var(--sage); }
+  .risk-body { padding: 1.2rem 1.4rem; }
+  .risk-item { margin-bottom: 0.9rem; }
+  .risk-item:last-child { margin-bottom: 0; }
+  .risk-item h5 { font-size: 0.82rem; font-weight: 700; color: var(--deep); margin-bottom: 0.25rem; }
+  .risk-item p { font-size: 0.79rem; color: #666; line-height: 1.7; }
+  .risk-legal-body { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; padding: 1.2rem 1.4rem; }
+
+  /* FOOTER */
+  footer { background: var(--ink); padding: 4rem 2.5rem; text-align: center; color: rgba(255,255,255,0.38); }
+  .footer-brand { font-family: 'Noto Serif TC', serif; font-size: 1.9rem; font-weight: 700; color: var(--gold); margin-bottom: 0.4rem; }
+  .footer-tagline { font-size: 0.83rem; margin-bottom: 1.5rem; }
+  .footer-meta { font-size: 0.72rem; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left::after { display: none; }
+    .hero-right { padding: 3rem 2rem; }
+    .product-grid, .features-grid, .tech-stack, .finance-grid, .risk-grid { grid-template-columns: 1fr; }
+    .persona-grid, .market-grid, .moat-grid, .gtm-phases, .intervention-steps { grid-template-columns: 1fr; }
+    .gtm-phase { border-right: none; border-bottom: 1px solid var(--border); }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card.featured { transform: none; }
+    .memory-layer { grid-template-columns: 1fr; }
+    .unit-econ { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .risk-legal-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">親念 NearKin</div>
+  <ul class="nav-links">
+    <li><a href="#product">產品</a></li>
+    <li><a href="#market">市場</a></li>
+    <li><a href="#tech">技術</a></li>
+    <li><a href="#pricing">定價</a></li>
+    <li><a href="#finance">財務</a></li>
+    <li><a href="#ethics">倫理</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">創業提案報告 · 2025</div>
+    <div class="hero-title">親念</div>
+    <div class="hero-title-en">NearKin</div>
+    <p class="hero-tagline">全台首創 AI 親情代理人——讓愛，跨越忙碌的時空。給父母最溫暖的陪伴，給您最安心的守護。</p>
+    <div class="hero-badges">
+      <span class="badge">AI 陪伴</span>
+      <span class="badge">數位孿生</span>
+      <span class="badge">高齡照護</span>
+      <span class="badge">台灣首創</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="circle-outer"></div>
+      <div class="circle-mid"></div>
+      <div class="circle-inner">
+        <div class="circle-icon">🤝</div>
+        <div class="circle-text">親情橋樑</div>
+      </div>
+      <div class="orbit-dot">👴</div>
+      <div class="orbit-dot">👩</div>
+      <div class="orbit-dot">💊</div>
+      <div class="orbit-dot">💬</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section class="product-section" id="product">
+  <div class="container">
+    <div class="section-label">01 · 產品介紹</div>
+    <h2 class="section-title">當您不在身邊的每一刻<br>父母依然感受得到您的存在</h2>
+    <div class="product-grid reveal">
+      <div class="product-intro-text">
+        <h3>產品概述</h3>
+        <p>親念 NearKin 是一款專為高齡家庭設計的 <strong>AI 親情陪伴 App</strong>，適用於 iOS 與 Android 手機及平板裝置。透過少量語音與影像樣本，快速建構子女的 AI 數位分身，讓長輩在子女不在身邊的每一刻，依然能感受到熟悉的陪伴與關愛。</p>
+        <p>隨著使用時間累積，系統持續從子女的日常互動中學習，讓 AI 分身愈來愈像真實的那個人。</p>
+        <p>產品分為<strong>兩個端口</strong>：長輩端（親念陪伴）提供模擬視訊通話的沉浸體驗；子女端（親念管理）讓付費子女建立分身、掌握父母每日狀態。</p>
+      </div>
+      <div class="value-props">
+        <div class="value-card">
+          <h4>🎯 情感代償</h4>
+          <p>AI 分身繼承您的說話習慣與幽默感，模擬真人視訊通話，隨時與父母聊天，排解孤獨。</p>
+        </div>
+        <div class="value-card">
+          <h4>🛡 健康守護</h4>
+          <p>24 小時智慧關懷，AI 以您的口吻提醒用藥，作息異常即時通知子女，從不缺席。</p>
+        </div>
+        <div class="value-card">
+          <h4>🌉 心靈橋樑</h4>
+          <p>每日情緒報告與雙向留言，讓您在忙碌之餘也能深度參與父母的每一天。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-label">02 · 四大核心功能</div>
+    <h2 class="section-title">讓愛，不因忙碌缺席</h2>
+    <div class="features-grid reveal">
+      <div class="feature-card" data-num="01">
+        <div class="feature-icon">🎭</div>
+        <h3>AI 親情分身<br><small style="font-size:0.78rem;color:#aaa;font-family:'Noto Sans TC'">Family Avatar</small></h3>
+        <p>子女只需 15 分鐘語音導引，系統即生成初版 AI 分身。Talking Head 技術驅動動態臉部，嘴型表情與語音完全同步，宛如真實視訊通話。</p>
+        <ul class="feature-sub">
+          <li>聲音複製：語調、語速、口頭禪高度還原</li>
+          <li>動態頭像：照片生成即時動態臉部</li>
+          <li>記憶注入：家庭故事、共同回憶自然帶入</li>
+          <li>持續學習：語音留言自動優化分身</li>
+        </ul>
+      </div>
+      <div class="feature-card" data-num="02">
+        <div class="feature-icon">💊</div>
+        <h3>生活關懷管家<br><small style="font-size:0.78rem;color:#aaa;font-family:'Noto Sans TC'">Smart Caretaker</small></h3>
+        <p>子女可透過語音描述或拍攝藥單，AI 自動辨識並結構化整理成提醒排程，以子女口吻溫柔提醒長輩按時服藥。</p>
+        <ul class="feature-sub">
+          <li>多模態輸入：語音、拍照、OCR 智能辨識</li>
+          <li>個性化提醒：以您的口吻關心父母</li>
+          <li>作息關懷：早安、午後、晚間定時問候</li>
+          <li>異常推播：長時間無互動即通知子女</li>
+        </ul>
+      </div>
+      <div class="feature-card" data-num="03">
+        <div class="feature-icon">📊</div>
+        <h3>情緒洞察儀表板<br><small style="font-size:0.78rem;color:#aaa;font-family:'Noto Sans TC'">Emotional Insights</small></h3>
+        <p>每日產出「親情日報」，分析長輩對話情緒，整理今日聊天摘要，讓子女遠在他鄉也能深度了解父母的心情狀態。</p>
+        <ul class="feature-sub">
+          <li>語意分析：偵測寂寞、開心、憂鬱指標</li>
+          <li>語音音調：語速變化等情緒輔助判斷</li>
+          <li>每日摘要：「媽媽今天提到想吃紅豆餅」</li>
+          <li>週趨勢：連續低落指標主動提示子女</li>
+        </ul>
+      </div>
+      <div class="feature-card" data-num="04">
+        <div class="feature-icon">🔗</div>
+        <h3>雙向情感橋樑<br><small style="font-size:0.78rem;color:#aaa;font-family:'Noto Sans TC'">Communication Bridge</small></h3>
+        <p>打破即時通訊壓力，建立非同步的低壓力雙向溝通。子女的留言由 AI 自然帶入對話，長輩的心聲彙整後推播至子女手機。</p>
+        <ul class="feature-sub">
+          <li>子女留言：語音 / 文字，AI 適時傳達</li>
+          <li>長輩心聲：思念彙整後推播通知子女</li>
+          <li>真實連線引導：情緒需要時提示「現在致電」</li>
+          <li>非同步設計：消除即時回覆的壓力</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONA -->
+<section class="persona-section">
+  <div class="container">
+    <div class="section-label" style="color:rgba(201,168,76,0.8)">03 · 用戶角色</div>
+    <h2 class="section-title">三個角色，一條情感鏈</h2>
+    <p class="section-desc">親念 NearKin 服務鏈中涉及三個核心角色，AI 分身的定位是情感中介者，而非替代者。AI 分身的存在以子女的明確授權為前提。</p>
+    <div class="persona-grid reveal">
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:rgba(201,168,76,0.15)">👩‍💼</div>
+        <h3>子女 · 付費者</h3>
+        <div class="subtitle">Creator & Subscriber</div>
+        <p>25–50 歲都市青壯年，工作繁忙、父母異地居住。有穩定收入與訂閱付費習慣，長期承受「陪伴缺席」的心理壓力。授權建立分身，擁有完整的管理與終止控制權。</p>
+        <span class="persona-tag" style="background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.3)">核心需求：降低愧疚感，確保父母安好</span>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:rgba(122,158,126,0.15)">👴</div>
+        <h3>長輩 · 使用者</h3>
+        <div class="subtitle">Primary User</div>
+        <p>65 歲以上，子女不在身邊的獨居或夫妻同住長輩。不願成為子女負擔，卻渴望被陪伴與重視。長輩端介面極簡：點開畫面、開口說話，無需學習複雜操作。</p>
+        <span class="persona-tag" style="background:rgba(122,158,126,0.12);color:var(--sage);border:1px solid rgba(122,158,126,0.3)">核心需求：熟悉感與被重視的感覺</span>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:rgba(184,201,200,0.15)">🤖</div>
+        <h3>AI 分身 · 中介者</h3>
+        <div class="subtitle">Emotional Mediator</div>
+        <p>情感中介者，非替代者。系統明確告知長輩互動對象為 AI 分身——「這是 [子女名字] 授權給您的 AI 陪伴，代表他/她的關心陪伴您。」透明原則是最關鍵的倫理區隔。</p>
+        <span class="persona-tag" style="background:rgba(184,201,200,0.12);color:var(--mist);border:1px solid rgba(184,201,200,0.3)">定位：橋樑而非終點</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section class="market-section" id="market">
+  <div class="container">
+    <div class="section-label">04 · 市場規模</div>
+    <h2 class="section-title">台灣超高齡社會<br>正在創造這個需求</h2>
+    <p class="section-desc">台灣於 2025 年正式進入超高齡社會，65 歲以上人口突破 20%（約 470 萬人）。少子化加速異地家庭比例上升，陪伴缺口持續擴大。</p>
+    <div class="market-grid reveal">
+      <div class="market-card tam">
+        <div class="market-label">TAM · 全體可觸及市場</div>
+        <div class="market-num">185億</div>
+        <div class="market-unit">新台幣／年</div>
+        <div class="market-desc">全台有高齡父母、子女異地家庭的潛在訂閱市場。約 387 萬付費用戶，月費 NT$399 估算。</div>
+      </div>
+      <div class="market-card sam">
+        <div class="market-label">SAM · 可服務目標市場</div>
+        <div class="market-num">55億</div>
+        <div class="market-unit">新台幣／年</div>
+        <div class="market-desc">具智慧型手機使用習慣、有訂閱付費習慣的族群（約 TAM 的 30%），約 116 萬付費用戶。</div>
+      </div>
+      <div class="market-card som">
+        <div class="market-label">SOM · 實際可獲取市場（前三年）</div>
+        <div class="market-num">1.7–2.8億</div>
+        <div class="market-unit">新台幣／年</div>
+        <div class="market-desc">目標達成 SAM 的 3–5%，約 3.5–5.8 萬付費用戶。前三年透過數位行銷與口碑滲透。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITION -->
+<section class="competition-section">
+  <div class="container">
+    <div class="section-label">05 · 競爭分析</div>
+    <h2 class="section-title">我們佔據一個<br>無人涉足的象限</h2>
+    <p class="section-desc">競爭版圖橫跨 AI 陪伴、高齡照護科技與數位分身技術三大領域。親念 NearKin 明確定位於「高度個人化 × 高齡友善」的空白市場。</p>
+    <div class="reveal" style="overflow-x:auto;margin-top:2rem">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>競爭者</th><th>定位</th><th>情感個人化</th><th>高齡友善</th><th>親情連結</th><th>主要優勢</th><th>主要劣勢</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td>⭐ 親念 NearKin</td>
+            <td>AI 親情代理人</td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div></div></td>
+            <td>台灣在地化、子女數位孿生、倫理透明</td>
+            <td>品牌知名度待建立</td>
+          </tr>
+          <tr>
+            <td>Replika（美）</td>
+            <td>AI 情感陪伴</td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td>技術成熟、全球用戶規模大</td>
+            <td>非家庭導向、長輩門檻高</td>
+          </tr>
+          <tr>
+            <td>日本陪伴 App</td>
+            <td>高齡語音陪伴</td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td>有在地化設計</td>
+            <td>多為硬體綁定、無分身功能</td>
+          </tr>
+          <tr>
+            <td>LINE / Google Home</td>
+            <td>通訊 / 智慧助理</td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td><div class="dot-rating"><div class="dot fill"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div><div class="dot empty"></div></div></td>
+            <td>台灣普及率極高</td>
+            <td>無 AI 代理、需雙方同時在線</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:3rem">
+      <div class="section-label">五大競爭護城河</div>
+      <div class="moat-grid reveal">
+        <div class="moat-card"><div class="moat-icon">🔐</div><h4>親情分身不可複製性</h4></div>
+        <div class="moat-card"><div class="moat-icon">🇹🇼</div><h4>台灣在地化情感設計</h4></div>
+        <div class="moat-card"><div class="moat-icon">🔄</div><h4>雙邊用戶網路效應</h4></div>
+        <div class="moat-card"><div class="moat-icon">📈</div><h4>情感數據累積優勢</h4></div>
+        <div class="moat-card"><div class="moat-icon">✅</div><h4>倫理透明品牌定位</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section class="tech-section" id="tech">
+  <div class="container">
+    <div class="section-label" style="color:rgba(201,168,76,0.8)">06 · 技術架構</div>
+    <h2 class="section-title">四大核心技術模組</h2>
+    <p class="section-desc">整體技術可行性評估為中高——核心模組均有成熟商業或開源方案可整合，壁壘在於系統整合能力與台灣在地化調校，而非從零研發突破性技術。</p>
+    <div class="tech-stack reveal">
+      <div class="tech-module">
+        <h3>🎙 語音複製模組</h3>
+        <p>採用 Few-Shot Voice Cloning 技術，子女僅需 3–5 分鐘乾淨語音樣本，即可生成高擬真度聲音模型。支援台灣中文、台語夾雜等在地語言特性，並隨對話情境動態調整情緒語氣（開心、關心、輕鬆）。子女每次傳送語音留言，系統自動將新樣本納入模型微調。</p>
+        <div class="tech-chips">
+          <span class="chip">ElevenLabs API</span><span class="chip">OpenVoice</span><span class="chip">Few-Shot Learning</span><span class="chip">持續微調</span>
+        </div>
+      </div>
+      <div class="tech-module">
+        <h3>🎬 Talking Head 動態臉部</h3>
+        <p>以子女上傳的照片為基礎，即時驅動動態臉部動畫，嘴型、表情與語音內容完全同步。讓長輩感覺真的在與子女「視訊通話」，是整體沉浸感最關鍵的技術來源。初期採用商業 API 快速驗證市場。</p>
+        <div class="tech-chips">
+          <span class="chip">HeyGen API</span><span class="chip">D-ID API</span><span class="chip">Neural Talking Head</span><span class="chip">即時串流</span>
+        </div>
+      </div>
+      <div class="tech-module">
+        <h3>🧠 對話理解與情緒引擎</h3>
+        <p>LLM 為基礎，加上系統人格提示（子女專屬說話風格、口頭禪）、記憶注入（家庭記憶資料庫）與情境感知（時間、情緒、節慶），讓分身能說出「對的話」。情緒分析綜合語意、音調、互動頻率三個維度。</p>
+        <div class="tech-chips">
+          <span class="chip">GPT-4o / Claude API</span><span class="chip">情緒 NLP</span><span class="chip">Memory Injection</span><span class="chip">System Prompt</span>
+        </div>
+      </div>
+      <div class="tech-module">
+        <h3>💊 多模態健康輸入</h3>
+        <p>子女可透過三種方式建立健康照護資料：語音描述、拍攝藥袋（OCR 自動辨識）、手動確認。AI 自動整理成結構化提醒排程，到時間由分身以子女口吻提醒：「爸，醫生交代的藥要現在吃喔。」</p>
+        <div class="tech-chips">
+          <span class="chip">Google Vision OCR</span><span class="chip">語音轉文字</span><span class="chip">LLM 結構化</span><span class="chip">多模態輸入</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY -->
+<section class="memory-section">
+  <div class="container">
+    <div class="section-label">07 · 人格與記憶延續</div>
+    <h2 class="section-title">三層人格模型<br>讓分身愈來愈像你</h2>
+    <p class="section-desc">記憶是讓 AI 分身「像那個人」而非「像一個 AI」的關鍵。NearKin 建立三層記憶架構，從長期家庭故事到當下對話上下文，確保每次對話都連貫自然。</p>
+    <div class="memory-layers reveal">
+      <div class="memory-layer">
+        <div class="memory-layer-label"><div class="layer-num">1</div><h4>核心靜態人格</h4></div>
+        <div class="memory-layer-content">
+          <h5>長期記憶（Long-term Memory）</h5>
+          <p>由子女主動輸入的家庭重要事件、共同故事、成員資訊。引導式問卷涵蓋：稱謂習慣、說話風格、共同回憶、長輩偏好、關心習慣。永久保存，形成分身不可改變的人格底色。</p>
+          <div class="memory-example">「2019 年爸爸退休，我們全家去日本旅遊」、「媽媽最喜歡的電視劇是鄉土劇」</div>
+        </div>
+      </div>
+      <div class="memory-layer">
+        <div class="memory-layer-label"><div class="layer-num">2</div><h4>學習成長人格</h4></div>
+        <div class="memory-layer-content">
+          <h5>短期情境記憶（Short-term Context Memory）</h5>
+          <p>保存最近 30 天的對話摘要，讓 AI 分身能自然延續上次話題。子女每次語音留言、近況更新都成為分身持續學習的新樣本，讓分身與真實子女保持同步。</p>
+          <div class="memory-example">「上週媽媽提到膝蓋不舒服」→ 本週 AI 分身主動：「媽，上週說膝蓋不舒服，有好一點嗎？」</div>
+        </div>
+      </div>
+      <div class="memory-layer">
+        <div class="memory-layer-label"><div class="layer-num">3</div><h4>動態情境人格</h4></div>
+        <div class="memory-layer-content">
+          <h5>即時工作記憶（Working Memory）</h5>
+          <p>當次對話的完整上下文，確保對話前後連貫，不會出現「剛說過的事 AI 馬上忘記」的斷裂感。同時根據時間情境、長輩情緒、節慶時間動態調整表現方式。</p>
+          <div class="memory-example">農曆節慶前，AI 分身主動：「媽，除夕快到了，今年我們要包水餃嗎？」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-label">08 · 定價方案</div>
+    <h2 class="section-title">用一頓飯的錢<br>換父母每天的陪伴</h2>
+    <p class="section-desc">以子女為付費主體的月訂閱制，長輩端免費使用。兩個方案均具備完整 Talking Head 沉浸體驗，確保長輩第一次使用就能感受到產品的核心價值。</p>
+    <div class="pricing-grid reveal">
+      <div class="pricing-card">
+        <div class="pricing-name">常伴</div>
+        <div class="pricing-en">Standard</div>
+        <div class="pricing-price">399</div>
+        <div class="pricing-period">NT$ / 月</div>
+        <ul class="pricing-features">
+          <li>Talking Head 動態視訊體驗</li>
+          <li>AI 分身建立（語音 + 影像）</li>
+          <li>每日問候與用藥提醒</li>
+          <li>每日情緒日報</li>
+          <li>雙向留言橋樑</li>
+          <li>作息異常推播通知</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">最完整體驗</div>
+        <div class="pricing-name">深陪 Pro</div>
+        <div class="pricing-en">Professional</div>
+        <div class="pricing-price">699</div>
+        <div class="pricing-period">NT$ / 月</div>
+        <ul class="pricing-features">
+          <li>標準版全部功能</li>
+          <li>節慶影音賀卡生成</li>
+          <li>長輩回憶錄 AI 整理</li>
+          <li>進階健康週報分析</li>
+          <li>優先客服支援</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:3rem">
+      <div class="section-label">單位經濟模型</div>
+      <div class="unit-econ reveal">
+        <div class="econ-stat">
+          <div class="econ-num">NT$489</div>
+          <div class="econ-label">ARPU 平均月訂閱單價<br>（標準 70% / Pro 30%）</div>
+        </div>
+        <div class="econ-stat">
+          <div class="econ-num">NT$9,780</div>
+          <div class="econ-label">LTV 用戶終身價值<br>（生命週期 20 個月）</div>
+        </div>
+        <div class="econ-stat">
+          <div class="econ-num">8–12x</div>
+          <div class="econ-label">LTV / CAC 比值<br>（健康範圍為 3x 以上）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETING -->
+<section class="marketing-section">
+  <div class="container">
+    <div class="section-label">09 · 行銷策略</div>
+    <h2 class="section-title">情感驅動的<br>病毒式擴散策略</h2>
+    <p class="section-desc">核心邏輯：讓第一批用戶的真實故事，成為最有說服力的廣告。品牌主張：「親念，讓愛不缺席」。所有行銷溝通從真實的親子距離痛點出發，讓目標受眾三秒內說：「這說的就是我。」</p>
+    <div class="gtm-phases reveal">
+      <div class="gtm-phase">
+        <div class="phase-num">01</div>
+        <div class="phase-period">第 1–6 個月 · 種子期</div>
+        <h3>建立真實口碑</h3>
+        <p>封閉測試招募 200 名免費測試家庭，換取深度使用回饋與真實故事素材。與 3–5 位關注家庭議題 KOL 合作，以真實體驗為核心進行口碑擴散，而非硬廣。</p>
+        <div class="gtm-target"><span>目標</span><span>500–1,000 付費用戶</span></div>
+      </div>
+      <div class="gtm-phase">
+        <div class="phase-num">02</div>
+        <div class="phase-period">第 7–18 個月 · 成長期</div>
+        <h3>數位廣告規模化</h3>
+        <p>Meta 廣告精準投放（25–45 歲、父母異地），廣告公式：真實痛點場景 → 產品解法 → 真實用戶見證。母親節 / 父親節節慶行銷預期新增訂閱量為平日 3–5 倍。</p>
+        <div class="gtm-target"><span>目標</span><span>1–3 萬付費用戶</span></div>
+      </div>
+      <div class="gtm-phase">
+        <div class="phase-num">03</div>
+        <div class="phase-period">第 19–36 個月 · 深化期</div>
+        <h3>生態系擴張</h3>
+        <p>與長照機構、家醫科診所合作開拓通路，申請數位部、衛福部高齡科技照護相關補助計畫，降低研發成本並提升品牌公信力。</p>
+        <div class="gtm-target"><span>目標</span><span>5 萬以上付費用戶</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE -->
+<section class="finance-section" id="finance">
+  <div class="container">
+    <div class="section-label">10 · 財務規劃</div>
+    <h2 class="section-title">第二年接近損益平衡<br>第三年實現大幅獲利</h2>
+    <p class="section-desc">種子輪募資 NT$500–700 萬用於 MVP 開發，當付費用戶達到約 18,000 人時月度達到損益平衡，預計在第二年下半年實現。</p>
+    <div class="finance-grid reveal">
+      <div class="finance-card">
+        <h3>💰 開發成本估算</h3>
+        <div class="finance-row"><span class="label">App 雙端開發（iOS + Android）</span><span class="val">NT$80–120 萬</span></div>
+        <div class="finance-row"><span class="label">AI 語音複製模組整合</span><span class="val">NT$20–30 萬</span></div>
+        <div class="finance-row"><span class="label">Talking Head 模組整合</span><span class="val">NT$20–30 萬</span></div>
+        <div class="finance-row"><span class="label">LLM 對話引擎建置</span><span class="val">NT$15–25 萬</span></div>
+        <div class="finance-row"><span class="label">UI/UX 設計（長輩友善）</span><span class="val">NT$20–30 萬</span></div>
+        <div class="finance-row"><span class="label">完整版追加（第 7–18 個月）</span><span class="val">NT$90–135 萬</span></div>
+        <div class="finance-row"><span class="label" style="font-weight:700">總開發成本</span><span class="val" style="color:var(--warm);font-size:1rem">NT$270–405 萬</span></div>
+      </div>
+      <div class="finance-card">
+        <h3>📦 資金需求與損益平衡</h3>
+        <div class="finance-row"><span class="label">種子輪（MVP + 初始行銷）</span><span class="val">NT$500–700 萬</span></div>
+        <div class="finance-row"><span class="label">Pre-A 輪（完整版 + 規模化）</span><span class="val">NT$1,500–2,000 萬</span></div>
+        <div class="finance-row"><span class="label">A 輪（市場深化 + 護城河）</span><span class="val">NT$4,000–6,000 萬</span></div>
+        <div class="finance-row"><span class="label">月固定營運成本（5–7 人團隊）</span><span class="val">NT$90–155 萬</span></div>
+        <div class="finance-row"><span class="label">每用戶 API 變動成本</span><span class="val">NT$100 / 月</span></div>
+        <div class="finance-row"><span class="label">月度損益平衡點</span><span class="val positive">約 18,000 付費用戶</span></div>
+      </div>
+    </div>
+    <div style="overflow-x:auto;margin-top:2rem">
+      <table class="pnl-table reveal">
+        <thead>
+          <tr>
+            <th style="text-align:left">損益項目</th>
+            <th>第一年</th><th>第二年</th><th>第三年</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>付費用戶（年底）</td><td>6,200 人</td><td>22,000 人</td><td>48,000 人</td></tr>
+          <tr class="subtotal"><td>年度總營收</td><td>NT$1,820 萬</td><td>NT$8,400 萬</td><td>NT$22,400 萬</td></tr>
+          <tr><td>API 變動成本</td><td>NT$370 萬</td><td>NT$1,320 萬</td><td>NT$2,880 萬</td></tr>
+          <tr><td>行銷費用</td><td>NT$960 萬</td><td>NT$3,000 萬</td><td>NT$6,000 萬</td></tr>
+          <tr><td>團隊與營運固定成本</td><td>NT$840 萬</td><td>NT$1,440 萬</td><td>NT$2,400 萬</td></tr>
+          <tr class="total">
+            <td>年度淨損益</td>
+            <td class="negative">▼ NT$1,350 萬</td>
+            <td class="negative">▼ NT$360 萬</td>
+            <td class="positive">▲ NT$11,120 萬</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ETHICS -->
+<section class="ethics-section" id="ethics">
+  <div class="container">
+    <div class="section-label" style="color:rgba(201,168,76,0.8)">11 · 倫理挑戰</div>
+    <h2 class="section-title">當長輩愛上 AI<br>不再需要真實的你</h2>
+    <div class="ethics-intro">
+      AI 分身具備一個真實子女無法比擬的特質：它永遠有時間、永遠耐心、永遠不會因工作疲憊而心不在焉。長期使用後，長輩可能逐漸以 AI 替代對真實人際連結的需求——這是一種溫水煮青蛙式的危機，不會引發明顯事件，卻悄悄侵蝕真實的親子關係。這是親念 NearKin 最核心的倫理挑戰。
+    </div>
+
+    <div class="section-label" style="color:rgba(201,168,76,0.8);margin-top:1rem">因應方案：真實連結守護機制（Real Bond Guardian）</div>
+    <div class="intervention-steps reveal">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h4>AI 分身內建引導行為</h4>
+        <p>分身對話中植入「真實連結引導」準則：主動提及真實子女近況、鼓勵長輩主動打電話、在長輩表達深度情感需求時引導至真實人際行動，而非以滿足情感需求為終點。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h4>依賴度監測與預警系統</h4>
+        <p>後台持續監測：每日對話時長（超過 3 小時連續 2 週）、主動聯繫真實子女頻率（下降 50%）、對話中出現依附語句（「你比我兒子還好」）。任兩項同時觸發即啟動介入流程。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h4>三階段人工介入機制</h4>
+        <p>輕度：推播提示子女主動聯繫。中度：AI 分身縮短對話時長、增加自然結束語。重度：人工客服主動聯繫子女說明情況，必要時協助安排心理健康諮詢資源轉介。</p>
+      </div>
+    </div>
+    <div class="ethics-principle">
+      <p>「AI 分身存在的唯一目的，是讓真實的親子關係更好——而不是取代它。<br>當我們的產品讓一個家庭減少了真實的擁抱，我們就失敗了。」</p>
+    </div>
+  </div>
+</section>
+
+<!-- RISK -->
+<section class="risk-section">
+  <div class="container">
+    <div class="section-label">12 · 風險與法規因應</div>
+    <h2 class="section-title">我們看見風險<br>並已準備好因應對策</h2>
+    <div class="risk-grid reveal">
+      <div class="risk-card risk-tech">
+        <div class="risk-header"><span style="font-size:1.2rem">⚙️</span><h4>技術風險</h4></div>
+        <div class="risk-body">
+          <div class="risk-item"><h5>恐怖谷效應</h5><p>AI 分身品質未達長輩期望導致排斥。對策：採用最成熟商業 API，建立用戶評分機制，主動管理期望值，明確說明互動對象為 AI。</p></div>
+          <div class="risk-item"><h5>AI 幻覺問題</h5><p>LLM 可能生成子女未說過的內容。對策：記憶來源標記機制、內容安全護欄、子女端本週摘要審核功能，發現不當內容可一鍵修正。</p></div>
+          <div class="risk-item"><h5>服務中斷風險</h5><p>長輩已建立習慣後若服務中斷，將造成強烈失落感。對策：多雲備援架構（可用性 99.5%+）、離線模式、主動通知子女。</p></div>
+        </div>
+      </div>
+      <div class="risk-card risk-biz">
+        <div class="risk-header"><span style="font-size:1.2rem">📈</span><h4>商業風險</h4></div>
+        <div class="risk-body">
+          <div class="risk-item"><h5>用戶獲取成本超出預期</h5><p>台灣高齡照護科技市場尚未成熟，廣告觸及效率可能偏低。對策：以口碑與內容行銷為主力，優先投資轉介紹機制，拓展非數位推廣管道。</p></div>
+          <div class="risk-item"><h5>大型競爭者快速跟進</h5><p>Meta、LINE 等巨頭可能以更大資源複製核心功能。對策：加速建立情感數據護城河、深化台灣在地化優勢、強化倫理透明品牌信任。</p></div>
+          <div class="risk-item"><h5>長輩科技接受度不足</h5><p>長輩抗拒導致實際使用率偏低。對策：極簡介面設計（點開說話）、開機自動啟動、子女遠端教學模式。</p></div>
+        </div>
+      </div>
+      <div class="risk-card risk-legal" style="grid-column: 1 / -1">
+        <div class="risk-header"><span style="font-size:1.2rem">⚖️</span><h4>法規風險</h4></div>
+        <div class="risk-legal-body">
+          <div class="risk-item"><h5>個人資料保護法（個資法）</h5><p>聲音、臉部影像、健康資訊屬特種個人資料，須符合最嚴格規範。對策：雙重知情同意機制（子女 + 長輩各自獨立授權）、資料最小化原則、聘請法律顧問定期合規審查。</p></div>
+          <div class="risk-item"><h5>醫療器材相關法規</h5><p>健康監測功能可能被認定為醫療行為。對策：產品定位明確為「生活提醒輔助工具」、添加「以醫師指示為準」免責聲明、主動與衛福部諮詢確認產品定位。</p></div>
+          <div class="risk-item"><h5>AI 生成內容新興法規</h5><p>AI 人臉與聲音複製法規在全球快速演進。對策：持續追蹤歐盟 AI Act 與台灣數位部政策、所有 AI 生成內容明確標示，在法規要求前主動達到更高透明標準。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">親念 NearKin</div>
+  <div class="footer-tagline">讓愛，跨越忙碌的時空</div>
+  <div class="footer-meta">創業提案報告 · 2025 · AI 親情代理人 · 全台首創</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
